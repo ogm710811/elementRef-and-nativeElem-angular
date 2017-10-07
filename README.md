@@ -10,3 +10,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 This project shows the following Advanced Components examples:
 1. ElementRef and NativeElement.
+2. Using the platform agnostic Renderer.
