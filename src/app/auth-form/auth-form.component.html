@@ -3,7 +3,7 @@
     <ng-content select='h3'></ng-content>
     <label>
       Email address
-      <input type="email" name="email" ngModel>
+      <input #email type="email" name="email" ngModel>
     </label>
     <label>
       Password
@@ -16,14 +16,6 @@
     <!-- changing the view of the component -->
     <app-auth-message
       [style.display]="(showMessage ? 'inherit' : 'none')"
-    ></app-auth-message>
-
-    <app-auth-message
-    [style.display]="(showMessage ? 'inherit' : 'none')"
-    ></app-auth-message>
-
-    <app-auth-message
-    [style.display]="(showMessage ? 'inherit' : 'none')"
     ></app-auth-message>
 
     <ng-content select='button'></ng-content>

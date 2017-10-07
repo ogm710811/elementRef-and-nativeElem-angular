@@ -2,6 +2,7 @@ import { AuthMessageComponent } from './../auth-message/auth-message.component';
 import { Component, OnInit, Output, EventEmitter, ContentChild, AfterContentInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ContentChildren, QueryList, ViewChildren } from '@angular/core';
 import { AuthRememberComponent } from '../auth-remember/auth-remember.component';
+import { ElementRef } from '@angular/core';
 
 import { User } from '../models/user';
 @Component({
@@ -16,6 +17,12 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
   @ContentChild(AuthRememberComponent) remember: AuthRememberComponent;
   @ContentChildren(AuthRememberComponent) rememberChildren: QueryList<AuthRememberComponent>;
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
+
+  // aplying elementRef and nativeElement
+  // to access that element in the DOM after ViewInit
+  @ViewChild('email') email: ElementRef;
+
+
   constructor() { }
 
   ngOnInit() {
@@ -76,5 +83,19 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
           });
       });
     }
+
+
+    // for elementRef and nativeElement
+    // the nativeElement exposes his particular DOM node
+    // so you can apply same attributes and methods that JS
+    console.log(this.email.nativeElement);
+    this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
+    this.email.nativeElement.classList.add('email');
+    this.email.nativeElement.focus();
+    // *** IMPORTANT => Use this API as the last resort when direct access to DOM is needed.
+    // Use templating and data-binding provided by Angular instead. Alternatively you take
+    // a look at Renderer which provides API that can safely be used even when direct access
+    //  to native elements is not supported.
+
   }
 }
